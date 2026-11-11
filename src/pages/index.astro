@@ -24,5 +24,4 @@ const latest = posts.find(p => p.data.featured) || posts[0];
     <div class="section-heading"><h2 id="writing-title">Writing</h2><a href={withBase("/writing/")}>All notes →</a></div>
     <PostList posts={posts.filter(p => p.id !== latest?.id).slice(0, 5)} />
   </section>
-  {posts.some(p => p.data.sample) && <p class="sample-notice">The essays here are sample notes, ready to be replaced with my own writing.</p>}
 </Layout>
