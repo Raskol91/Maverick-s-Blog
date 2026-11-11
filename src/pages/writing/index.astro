@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts } from '../../lib/posts';
+const posts = await getPosts();
+const years = [...new Set(posts.map(p => p.data.date.getUTCFullYear()))];
+---
+<Layout title="All writing" section="All writing">
+  <header class="page-heading"><p class="eyebrow">The archive</p><h1>All writing<span class="accent">.</span></h1><p>Ideas, observations, and things worth working through.</p></header>
+  {years.map(year => <section class="archive-year"><div class="section-heading"><h2>{year}</h2><span class="small-label">{posts.filter(p => p.data.date.getUTCFullYear() === year).length} notes</span></div><PostList posts={posts.filter(p => p.data.date.getUTCFullYear() === year)} /></section>)}
+  {posts.length === 0 && <p>The first post is on its way.</p>}
+  {posts.some(p => p.data.sample) && <p class="sample-notice">Sample essays are included to demonstrate the blog. They can be replaced with your own writing.</p>}
+</Layout>

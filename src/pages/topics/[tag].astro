@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, topics, topicSlug, topicDescriptions } from '../../lib/posts';
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const allTopics = [...new Set([...topics, ...posts.flatMap(p => p.data.tags)])];
+  return allTopics.map(tag => ({ params: { tag: topicSlug(tag) }, props: { tag } }));
+}
+const { tag } = Astro.props;
+const posts = (await getPosts()).filter(p => p.data.tags.includes(tag));
+---
+<Layout title={tag} section={tag} description={topicDescriptions[tag]}>
+  <header class="page-heading"><p class="eyebrow">Browse by topic</p><h1><span class="heading-hash">#</span>{tag}</h1><p>{topicDescriptions[tag] || `Notes and ideas about ${tag}.`}</p></header>
+  <div class="section-heading"><h2>{posts.length} {posts.length === 1 ? 'note' : 'notes'}</h2><a href="/writing/">All writing ↗</a></div>
+  <PostList posts={posts} />
+  {posts.length === 0 && <p class="empty-note">Nothing here yet. Some ideas need a little more time.</p>}
+</Layout>

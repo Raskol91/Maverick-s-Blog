@@ -1,0 +1,66 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { topics, topicSlug } from '../lib/posts';
+interface Props { title?: string; description?: string; section?: string; }
+const { title = 'Home', description = 'Notes on data, AI, analytics engineering, and the people behind it. A personal blog by Maverick.', section = 'Home' } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content={`${title} | Maverick`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Maverick’s notes" href="/rss.xml" />
+    <title>{title === 'Home' ? 'Maverick | Notes on data & the people behind it' : `${title} | Maverick`}</title>
+    <script is:inline>
+      try { document.documentElement.dataset.theme = localStorage.getItem('theme') || 'light'; } catch { document.documentElement.dataset.theme = 'light'; }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="mobile-header">
+      <a class="brand" href="/">Maverick_</a>
+      <button class="icon-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar"><Icon name="menu" /></button>
+    </header>
+    <button class="nav-scrim" id="nav-scrim" aria-label="Close navigation" tabindex="-1" hidden></button>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand desktop-brand" href="/">Maverick_</a>
+      <nav aria-label="Main navigation" class="main-nav">
+        <a href="/" aria-current={pathname === '/' ? 'page' : undefined}><Icon name="home" />Home</a>
+        <button class="search-trigger" data-search-open><Icon name="search" /><span>Search</span><kbd>Ctrl K</kbd></button>
+        <a href="/writing/" aria-current={pathname === '/writing/' ? 'page' : undefined}><Icon name="file" />All writing</a>
+        <a href="/about/" aria-current={pathname === '/about/' ? 'page' : undefined}><Icon name="person" />About</a>
+      </nav>
+      <nav aria-label="Topics" class="topic-nav">
+        <details open>
+          <summary class="nav-label"><Icon name="chevron" size={18} /><span>Topics</span></summary>
+          <div class="topic-children">{topics.map(tag => <a href={`/topics/${topicSlug(tag)}/`} aria-current={pathname === `/topics/${topicSlug(tag)}/` ? 'page' : undefined}>{tag}</a>)}</div>
+        </details>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-tools"><a href="/rss.xml" class="rss-link"><Icon name="rss" size={16} />RSS feed</a><button id="theme-toggle" class="icon-button" aria-label="Switch to dark theme"><span class="moon-icon"><Icon name="moon" /></span><span class="sun-icon"><Icon name="sun" /></span></button></div>
+      </div>
+    </aside>
+    <div class="page-shell">
+      <main id="main" tabindex="-1"><slot /></main>
+      <footer class="page-footer"><span>© {new Date().getFullYear()} Maverick</span><div><a href="/colophon/">About this site</a><a href="/rss.xml">RSS <span aria-hidden="true">↗</span></a></div></footer>
+    </div>
+    <dialog id="search-dialog" aria-labelledby="search-heading">
+      <form method="dialog" class="search-header"><h2 id="search-heading">Search posts</h2><button class="icon-button" aria-label="Close search"><Icon name="close" /></button></form>
+      <div class="search-input-wrap"><Icon name="search" /><input id="search-input" type="search" placeholder="An idea, a topic, a question…" aria-label="Search notes" autocomplete="off" /></div>
+      <p id="search-status" class="search-status" role="status">Start typing to find a note.</p>
+      <ul id="search-results" class="search-results"></ul>
+      <div class="search-hint"><span>Search titles, topics, and full text</span><span><kbd>esc</kbd> to close</span></div>
+    </dialog>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>
