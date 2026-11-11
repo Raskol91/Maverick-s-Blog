@@ -6,8 +6,9 @@ import portrait from '../assets/maverick.png';
 ---
 <Layout title="About" section="About">
   <header class="page-heading about-intro">
-    <Image class="portrait" src={portrait} alt="Maverick" width={320} format="webp" />
-    <div><p class="eyebrow">A little about me</p><h1>Hi! I’m Maverick.</h1><p class="about-welcome">Welcome to my space for all things data, analytics, and AI/ML engineering.</p></div>
+    <Image class="portrait" src={portrait} alt="Maverick" width={448} format="webp" />
+    <h1>Hi! I’m Maverick.</h1>
+    <p>Welcome to my space for all things data, analytics, and AI/ML engineering.</p>
   </header>
   <div class="prose">
     <p>I’m curious about how data becomes something useful, from the pipelines and models behind it to the analytics and AI/ML applications people use.</p>
@@ -22,13 +23,8 @@ import portrait from '../assets/maverick.png';
 </Layout>
 
 <style>
-  .about-intro { display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: center; gap: 32px; }
-  .portrait { grid-column: 2; grid-row: 1; display: block; width: 160px; height: auto; border-radius: 6px; }
-  .about-intro > div { grid-column: 1; grid-row: 1; }
-  .about-welcome { color: var(--muted); }
+  .portrait { display: block; width: 224px; max-width: 100%; height: auto; margin-bottom: 28px; border-radius: 6px; }
   @media (max-width: 760px) {
-    .about-intro { grid-template-columns: 1fr; gap: 24px; }
-    .portrait { grid-column: 1; grid-row: 1; width: 128px; }
-    .about-intro > div { grid-row: 2; }
+    .portrait { width: 160px; margin-bottom: 24px; }
   }
 </style>
