@@ -64,7 +64,7 @@ async function openSearch() {
   input.focus();
   if (posts) return search();
   status.textContent = 'Loading notes…';
-  loading ??= fetch('/search.json').then(response => {
+  loading ??= fetch(`${import.meta.env.BASE_URL}search.json`).then(response => {
     if (!response.ok) throw new Error('Search unavailable');
     return response.json();
   }).then(data => { posts = data; }).finally(() => { loading = undefined; });

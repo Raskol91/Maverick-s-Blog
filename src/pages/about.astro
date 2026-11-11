@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/paths";
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout title="About" section="About">
@@ -11,6 +12,6 @@ import Layout from '../layouts/Layout.astro';
     <h2>Why I write</h2>
     <p>Writing helps me make sense of what I’m learning. This blog is a place to think things through, share useful discoveries, and keep coming back with new questions.</p>
     <hr />
-    <p>Have a look through <a href="/writing/">my posts</a>, pick a topic in the sidebar, or <a href="/rss.xml">follow along via RSS</a>.</p>
+    <p>Have a look through <a href={withBase("/writing/")}>my posts</a>, pick a topic in the sidebar, or <a href={withBase("/rss.xml")}>follow along via RSS</a>.</p>
   </div>
 </Layout>

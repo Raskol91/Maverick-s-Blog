@@ -12,7 +12,7 @@ Active in what sense? Over which period? Are trial accounts included? Who can an
 Without that context, the chart creates as many questions as it answers.
 
 <figure>
-  <img src="/images/posts/seattle-library.jpg" alt="Bookshelves under the sunlit geometric glass roof of Seattle Public Library." width="1600" height="1067" loading="lazy" decoding="async" />
+  <img src="../../images/posts/seattle-library.jpg" alt="Bookshelves under the sunlit geometric glass roof of Seattle Public Library." width="1600" height="1067" loading="lazy" decoding="async" />
   <figcaption>Seattle Public Library. Photo by <a href="https://unsplash.com/photos/book-lot-on-shelf-_ar2ENzmqb0">Sylvia Yang</a> on Unsplash.</figcaption>
 </figure>
 

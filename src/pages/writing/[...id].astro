@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../../lib/paths";
 import { render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { getPosts, topicSlug, dateLabel, readingTime } from '../../lib/posts';
@@ -9,16 +10,16 @@ const related = (await getPosts()).filter(p => p.id !== post.id && p.data.tags.s
 ---
 <Layout title={post.data.title} description={post.data.description} section="Writing">
   <article>
-    <a href="/writing/" class="back-link">← All writing</a>
+    <a href={withBase("/writing/")} class="back-link">← All writing</a>
     <header class="article-header">
       <h1>{post.data.title}</h1>
       <div class="post-meta"><time datetime={post.data.date.toISOString()}>{dateLabel(post.data.date)}</time><span>·</span><span>{readingTime(post)} min read</span>{post.data.sample && <span class="sample-badge">Sample essay</span>}</div>
-      <div class="topic-pills">{post.data.tags.map(tag => <a href={`/topics/${topicSlug(tag)}/`}><span>#</span>{tag}</a>)}</div>
+      <div class="topic-pills">{post.data.tags.map(tag => <a href={withBase(`/topics/${topicSlug(tag)}/`)}><span>#</span>{tag}</a>)}</div>
       {headings.filter(h => h.depth === 2).length > 1 && <details class="table-of-contents"><summary>In this note</summary><ul>{headings.filter(h => h.depth === 2).map(h => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ul></details>}
       <p class="article-deck">{post.data.description}</p>
     </header>
     <div class="prose"><Content /></div>
-    <div class="article-end"><p>Thanks for reading.</p><a href="/rss.xml">Follow via RSS ↗</a></div>
+    <div class="article-end"><p>Thanks for reading.</p><a href={withBase("/rss.xml")}>Follow via RSS ↗</a></div>
   </article>
-  {related.length > 0 && <section class="related-notes"><div class="section-heading"><h2>Connected ideas</h2></div><ul>{related.map(p => <li><a href={`/writing/${p.id}/`}>{p.data.title}<span aria-hidden="true">↗</span></a></li>)}</ul></section>}
+  {related.length > 0 && <section class="related-notes"><div class="section-heading"><h2>Connected ideas</h2></div><ul>{related.map(p => <li><a href={withBase(`/writing/${p.id}/`)}>{p.data.title}<span aria-hidden="true">↗</span></a></li>)}</ul></section>}
 </Layout>

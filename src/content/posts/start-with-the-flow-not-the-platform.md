@@ -10,7 +10,7 @@ An end-to-end platform can make it easy to start building. It can also make it e
 Before designing a solution in Microsoft Fabric or any other data platform, sketch the flow.
 
 <figure>
-  <img src="/images/posts/forest-river.jpg" alt="Streams meet in a dense evergreen forest, with a small footbridge crossing one branch." width="1600" height="1200" loading="lazy" decoding="async" />
+  <img src="../../images/posts/forest-river.jpg" alt="Streams meet in a dense evergreen forest, with a small footbridge crossing one branch." width="1600" height="1200" loading="lazy" decoding="async" />
   <figcaption>Three streams in a forest. Photo by <a href="https://unsplash.com/photos/birds-eye-view-of-river-and-green-trees-qYMa2-P-U0M">David Kovalenko</a> on Unsplash.</figcaption>
 </figure>
 

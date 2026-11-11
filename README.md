@@ -32,16 +32,16 @@ Refer to the site as a blog. Use commas, colons, parentheses, or separate senten
 Headings, lists, quotes, tables, fenced code with syntax highlighting, inline code, images, and normal Markdown links are supported. Article headings automatically create the “In this note” contents list.
 
 ```md
-[A related note](/writing/documentation-is-part-of-the-product/)
-![A description of the image](/images/my-image.jpg)
+[A related note](../documentation-is-part-of-the-product/)
+![A description of the image](../../images/my-image.jpg)
 ```
 
 Store images in `public/images/`. For a two-column gallery like the reference, use HTML within Markdown:
 
 ```html
 <div class="image-grid">
-  <img src="/images/first.jpg" alt="Describe the first image" loading="lazy" />
-  <img src="/images/second.jpg" alt="Describe the second image" loading="lazy" />
+  <img src="../../images/first.jpg" alt="Describe the first image" loading="lazy" />
+  <img src="../../images/second.jpg" alt="Describe the second image" loading="lazy" />
 </div>
 ```
 
@@ -62,9 +62,27 @@ Add topics to the `topics` list via `topicDescriptions` to include them in navig
 
 The light theme is the default. The moon/sun control stores the preference locally. Search opens with the sidebar button or Ctrl/Cmd K. On phones, use the menu button to open navigation and theme controls. Reduced-motion preferences are respected. Inter is served locally, with its license in `public/fonts/OFL.txt`. There are no third-party font requests, advertising, or analytics scripts.
 
-## Hosting
+## GitHub Pages
 
-The project is configured for a Sites deployment. `.openai/hosting.json` contains its identity and declares `dist` as the static output. The blog is also portable to static hosts that support directory-based routes. Set `site` in `astro.config.mjs` to your final domain before publishing elsewhere so canonical links and RSS use the correct origin. Static hosting should serve `404.html` for unknown routes.
+The blog publishes from `main` using `.github/workflows/deploy.yml`.
+The workflow builds Astro, checks internal links, images, search, and RSS, then
+deploys the generated `dist/` folder. In the repository's Settings → Pages,
+select **GitHub Actions** as the source.
+
+Default address: https://raskol91.github.io/Maverick-s-Blog/
+
+To add a custom domain later, set `SITE_URL` to its HTTPS origin and
+`BASE_PATH` to `/` in the workflow's build environment (or update the defaults
+in `astro.config.mjs`). Then add the domain under Settings → Pages, configure
+its DNS records, and enable HTTPS. In posts, link to sibling articles with
+`../post-slug/` and images with `../../images/...`. These relative paths work
+under both the GitHub project URL and a future custom domain.
+
+## Original hosting
+
+The original Sites version remains at https://maverick-field-notes.maverick28.chatgpt.site/.
+Its source is maintained separately in `maverick-notes-minimal`. This repository
+publishes through GitHub Pages and does not deploy changes to the Sites version.
 
 ## Design references
 

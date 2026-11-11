@@ -36,7 +36,7 @@ A good question creates space for specifics. Who will use the answer? How often 
 
 Write down the assumptions alongside the metric. A simple definition that another person can challenge is more useful than an impressive calculation that nobody can explain.
 
-This is also where [documentation becomes part of the product](/writing/documentation-is-part-of-the-product/), rather than something saved for the end.
+This is also where [documentation becomes part of the product](../documentation-is-part-of-the-product/), rather than something saved for the end.
 
 ## Build the smallest useful answer
 

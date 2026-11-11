@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/paths";
 import Layout from '../layouts/Layout.astro';
 import PostList from '../components/PostList.astro';
 import { getPosts, dateLabel, readingTime } from '../lib/posts';
@@ -9,18 +10,18 @@ const latest = posts.find(p => p.data.featured) || posts[0];
   <header class="home-intro">
     <h1>Maverick’s blog</h1>
     <p class="intro-copy">Hi! I’m Maverick. This is my space to write about all things data, analytics, and AI/ML engineering.</p>
-    <p class="intro-secondary"><a class="text-link" href="/about/">A little more about me.</a></p>
+    <p class="intro-secondary"><a class="text-link" href={withBase("/about/")}>A little more about me.</a></p>
   </header>
   {latest && <section class="latest-section" aria-labelledby="latest-title">
     <div class="section-heading"><h2 id="latest-title">The latest note</h2></div>
-    <a class="featured-post" href={`/writing/${latest.id}/`}>
+    <a class="featured-post" href={withBase(`/writing/${latest.id}/`)}>
       <h3>{latest.data.title}</h3>
       <div class="post-meta"><time datetime={latest.data.date.toISOString()}>{dateLabel(latest.data.date)}</time><span>·</span><span>{readingTime(latest)} min read</span></div>
       <p>{latest.data.description}</p>
     </a>
   </section>}
   <section class="writing-section" aria-labelledby="writing-title">
-    <div class="section-heading"><h2 id="writing-title">Writing</h2><a href="/writing/">All notes →</a></div>
+    <div class="section-heading"><h2 id="writing-title">Writing</h2><a href={withBase("/writing/")}>All notes →</a></div>
     <PostList posts={posts.filter(p => p.id !== latest?.id).slice(0, 5)} />
   </section>
   {posts.some(p => p.data.sample) && <p class="sample-notice">The essays here are sample notes, ready to be replaced with my own writing.</p>}
