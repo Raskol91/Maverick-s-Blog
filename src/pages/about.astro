@@ -1,9 +1,14 @@
 ---
 import { withBase } from "../lib/paths";
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import portrait from '../assets/maverick.png';
 ---
 <Layout title="About" section="About">
-  <header class="page-heading"><p class="eyebrow">A little about me</p><h1>Hi! I’m Maverick.</h1><p>Welcome to my space for all things data, analytics, and AI/ML engineering.</p></header>
+  <header class="page-heading about-intro">
+    <Image class="portrait" src={portrait} alt="Maverick" width={320} format="webp" />
+    <div><p class="eyebrow">A little about me</p><h1>Hi! I’m Maverick.</h1><p class="about-welcome">Welcome to my space for all things data, analytics, and AI/ML engineering.</p></div>
+  </header>
   <div class="prose">
     <p>I’m curious about how data becomes something useful, from the pipelines and models behind it to the analytics and AI/ML applications people use.</p>
     <h2>What you’ll find here</h2>
@@ -15,3 +20,15 @@ import Layout from '../layouts/Layout.astro';
     <p>Have a look through <a href={withBase("/writing/")}>my posts</a>, pick a topic in the sidebar, or <a href={withBase("/rss.xml")}>follow along via RSS</a>.</p>
   </div>
 </Layout>
+
+<style>
+  .about-intro { display: grid; grid-template-columns: minmax(0, 1fr) 160px; align-items: center; gap: 32px; }
+  .portrait { grid-column: 2; grid-row: 1; display: block; width: 160px; height: auto; border-radius: 6px; }
+  .about-intro > div { grid-column: 1; grid-row: 1; }
+  .about-welcome { color: var(--muted); }
+  @media (max-width: 760px) {
+    .about-intro { grid-template-columns: 1fr; gap: 24px; }
+    .portrait { grid-column: 1; grid-row: 1; width: 128px; }
+    .about-intro > div { grid-row: 2; }
+  }
+</style>
