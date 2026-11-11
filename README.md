@@ -60,7 +60,7 @@ Use standard Markdown links in Obsidian. Obsidian-specific `[[wikilinks]]`, embe
 
 Add topics to the `topics` list via `topicDescriptions` to include them in navigation. Any topic used in a published post gets its own topic page automatically. Keep topic spelling and capitalization consistent.
 
-The light theme is the default. The moon/sun control stores the preference locally. Search opens with the sidebar button or Ctrl/Cmd K. On phones, use the menu button to open navigation and theme controls. Reduced-motion preferences are respected. Inter is served locally, with its license in `public/fonts/OFL.txt`. There are no third-party font requests, advertising, or analytics scripts.
+The dark theme is the default. The moon/sun control stores the preference locally. Search opens with the sidebar button or Ctrl/Cmd K. On phones, use the menu button to open navigation and theme controls. Reduced-motion preferences are respected. Inter is served locally, with its license in `public/fonts/OFL.txt`. There are no third-party font requests, advertising, or analytics scripts.
 
 ## GitHub Pages
 
